@@ -1,0 +1,21 @@
+ .jumbotron{
+    text-align: center;
+    color:white;
+    background-color:#071B2E;
+
+    }
+
+ body{
+    background-color:#07072E;
+    color:white;
+  }
+.navbar-static-top{
+   background-color:#2E072E;
+}
+/* {
+   background-color:#281351;
+}*/
+a:hover{
+   background-color:#281351;
+
+}

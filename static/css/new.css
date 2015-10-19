@@ -1,0 +1,46 @@
+ .jumbotron{
+    text-align: center;
+    color:white;
+    background-color:#071B2E;
+
+    }
+
+ body{
+    background-color:#07072E;
+    color:white;
+  }
+.navbar-static-top{
+   background-color:#2E072E;
+
+}
+/* {
+   background-color:#281351;
+}*/
+a:active {
+    background-color: yellow;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
+    color:#green;
+    background-color:#281351
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{
+    color:white;
+    background-color:#281351
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form{
+border-color:#281351
+}
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover{
+    color:#555;
+    background-color:#281351
+}
