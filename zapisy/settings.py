@@ -27,7 +27,16 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request"
+)
 # Application definition
 
 INSTALLED_APPS = (
@@ -38,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'registration',
     'projekty',
 )
 
@@ -101,3 +111,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+#django-registration-redux settings
+#czas wymagany do aktywacji konta
+ACCOUNT_ACTIVATION_DAYS = 7
+#automatyczne logowanie uzytkownika
+REGISTRATION_AUTO_LOGIN = True
+
+SITE_ID = 1
+#przekierowanie po zalogowaniu
+LOGIN_REDIRECT_URL='/'

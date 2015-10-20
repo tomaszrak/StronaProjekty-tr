@@ -5,15 +5,7 @@ from .forms import Login
 
 
 def home(request):
-    form = Login()
-    context = {
-        "form": form,
-    }
-    if request.method == "POST":
-        context = {
-            "form": form,
-        }
-    return render(request, 'home.html', context)
+    return render(request, 'home.html', {})
 
 
 def contact(request):

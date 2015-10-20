@@ -17,23 +17,26 @@
 
 <style>
     {% block style %}
+  .jumbotron{
+    color:green;
+    }
 
     {% endblock %}
 </style>
 
 {% block sign %}
 
-<div class="row" >
+<!--<div class="row" >
     <div class="col-md-4 col-md-offset-8">
         <h2 style="text-align:left;">Zaloguj się:</h2>
-     <form method="POST" action=""> {% csrf_token %}
-        {{form|crispy}}
+     <form method="POST" action="" > {% csrf_token %}
+        {{form}}
     <div align="center">
   <button type="button" class="btn btn-default" >Zaloguj</button>
         </div>
         </div>
     </div>
-</form>
+</form>-->
 
 
   {% endblock %}

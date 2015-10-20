@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="col-md-6 col-md-offset-3">
+  <form method="post" action="." >
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <input class="btn btn-primary btn-block" type="submit" value="{% trans 'Zaloguj' %}" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+  <br>
+  <div class="pull-right">
+  <p>{% trans "Zapomniałeś hasła" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Zresetuj hasło" %}</a>!</p>
+  <p>{% trans "Nie posiadasz konta" %}? <a href="{% url 'registration_register' %}">{% trans "Zarejestruj się" %}</a>!</p>
+</div>
+</div>
+  {% endblock %}
