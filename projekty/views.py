@@ -14,3 +14,7 @@ def home(request):
             "form": form,
         }
     return render(request, 'home.html', context)
+
+
+def contact(request):
+    return render(request, 'contact.html', {})

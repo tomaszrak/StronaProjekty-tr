@@ -11,11 +11,56 @@
   }
 .navbar-static-top{
    background-color:#2E072E;
+
 }
 /* {
    background-color:#281351;
 }*/
-a:hover{
-   background-color:#281351;
-
+a:active {
+    background-color: yellow;
 }
+
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
+    color:#green;
+    background-color:red
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{
+    color:white;
+    background-color:#281351
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form{
+border-color:green
+}
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover{
+    color:#red;
+    background-color:#281351
+}
+
+/*w panelu glownym po najechaniu myszka zmienia sie na dany kolor*/
+.navbar-default .navbar-nav> li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: white;
+}
+
+/*zmiana kolory TWOJE DANE po najechaniu myszka*/
+.navbar-default .navbar-header > a:hover,
+.navbar-default .navbar-header > a:focus {
+    color: grey;
+}
+.navbar-default .navbar-header a {
+    color: white;
+    }
+.navbar-default .navbar-nav a{
+    color: white;
+}
+
+

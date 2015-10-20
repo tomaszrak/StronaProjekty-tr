@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
 
                        url(r'^$', 'projekty.views.home', name='home'),
+                       url(r'kontakt/$', 'projekty.views.contact', name='contact'),
                        url(r'^admin/', include(admin.site.urls)),
                        )
 
