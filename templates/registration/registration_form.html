@@ -10,10 +10,20 @@
       {% csrf_token %}
       {{ form|crispy }}
 
-      <input class="btn btn-default" type="submit" value="{% trans 'Submit' %}" />
+      <input class="btn btn-primary btn-block" type="submit" value="{% trans 'Rejestracja' %}" />
     </form>
 </div>
+<!--
 <style>
+    h1{
+    color: black;
+    }
+    .col-sm-6{
+    color: #06751F;
+    }
+
+
+</style>-->
 
 
 {% endblock %}

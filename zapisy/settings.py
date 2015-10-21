@@ -118,6 +118,8 @@ ACCOUNT_ACTIVATION_DAYS = 7
 #automatyczne logowanie uzytkownika
 REGISTRATION_AUTO_LOGIN = True
 
+REGISTRATION_FORM = 'projekty.forms.Registration'
+
 SITE_ID = 1
 #przekierowanie po zalogowaniu
 LOGIN_REDIRECT_URL='/'
