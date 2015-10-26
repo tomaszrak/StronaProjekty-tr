@@ -37,6 +37,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request"
 )
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -118,8 +119,14 @@ ACCOUNT_ACTIVATION_DAYS = 7
 #automatyczne logowanie uzytkownika
 REGISTRATION_AUTO_LOGIN = True
 
+SEND_ACTIVATION_EMAIL = False
+
+#REGISTRATION_OPEN = True
+
 REGISTRATION_FORM = 'projekty.forms.Registration'
 
 SITE_ID = 1
 #przekierowanie po zalogowaniu
 LOGIN_REDIRECT_URL='/'
+
+LOGIN_URL = '/accounts/login/'

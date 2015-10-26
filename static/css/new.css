@@ -6,7 +6,7 @@
 
  body{
     background-color:#D4D4E0;
-    color:white;
+    color:black;
     background-image: url("https://wallpaperscraft.com/image/work_pencil_drawing_4505_3303x2202.jpg");
     background-size:   cover;
     background-repeat: no-repeat;
@@ -82,4 +82,7 @@ border-color:green
 .navbar-default .navbar-collapse a{
     font-family: nexa_rust_handmadeextended;
     font-size: 15px;
+}
+.form-control{
+    background-color:#FFE9CF;
 }

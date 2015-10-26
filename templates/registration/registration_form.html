@@ -6,14 +6,14 @@
 <div class="col-sm-6 col-sm-offset-3">
     <h1> Zarejestruj się:</h1>
     <form method="post" action=".">
-
       {% csrf_token %}
       {{ form|crispy }}
 
       <input class="btn btn-primary btn-block" type="submit" value="{% trans 'Rejestracja' %}" />
     </form>
+
+
 </div>
-<!--
 <style>
     h1{
     color: black;
@@ -23,7 +23,6 @@
     }
 
 
-</style>-->
-
+</style>
 
 {% endblock %}

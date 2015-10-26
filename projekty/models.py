@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-
+from registration.signals import user_registered
 # Create your models here.
 
 
@@ -75,7 +75,14 @@ class Wybrany_projekt(models.Model):
         return u'%s %s' % (self.id_student, self.id_projektu)
 
 
+def user_registered_callback(sender, user, request, **kwargs):
+    profile = Student(id_student=user)
+    profile.nazwisko = (request.POST["last_name"])
+    profile.imie= (request.POST["first_name"])
+    profile.tok_studiow = (request.POST["tok_studiow"])
+    profile.save()
 
+user_registered.connect(user_registered_callback)
 
 
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% load i18n %}
 
+{% block title %} Kontakt{{block.super}} {% endblock %}
 
 {% block content %}
     <div class="row">
@@ -11,9 +11,9 @@
                 <br>
                 <p style="text-align:left">e-mail: kancelaria@prz.edu.pl,<br>administrator serwisu: webadmin@prz.edu.pl</p>
             </div>
+
             </div>
     </div>
-
 <!--<style>
     body{
     background-image: url("/static/zapisy/pencil.jpg");
@@ -24,3 +24,4 @@
 </style>-->
 
 {% endblock %}
+
