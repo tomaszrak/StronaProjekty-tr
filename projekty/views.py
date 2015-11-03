@@ -1,9 +1,11 @@
 # _*_ coding: utf-8 _*_
+from django.contrib.auth.models import Group
 from django.shortcuts import render
 #from .forms import Login,Registration
 from projekty.models import Student
 from projekty.forms import Registration
-from django.contrib.auth.models import Group
+import datetime
+from django.contrib.auth.forms import PasswordChangeForm
 
 # Create your views here.
 
@@ -32,13 +34,17 @@ def contact(request):
 
 
 def your_data(request):
+    now = datetime.datetime.now()
     if request.user.is_authenticated():
         username = request.user.username
         name = Student.objects.get(id_student=username)
+        email = request.user.email
     else:
         name = "Jesteś nie zalogowany"
-#    form = Registration(request.POST or None)
+        email = "none"
     context = {
+       'email':email,
+        'now': now,
        'name': name,
     }
     return render(request, 'your_data.html', context)
@@ -54,5 +60,8 @@ def projects(request):
        'name': name,
     }
     return render(request, 'projects.html', context)
+
+
+
 
 

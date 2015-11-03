@@ -1,10 +1,128 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+
+{% block css %}
+      <link href="{% static 'css/user.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block js %}
+
+    <script src="{% static 'js/user.js' %} "></script>
+
+{% endblock %}
 
 {% block title %} Dane{{block.super}} {% endblock %}
 
 {% block content %}
 
-<b>{{name}}</b>
+
+{% if user.is_authenticated %}
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" media="screen">
+<div class="container">
+    <div class="row user-menu-container square">
+        <div class="col-md-7 user-details">
+            <div class="row coralbg white">
+                <div class="col-md-6 no-pad">
+                    <div class="user-pad">
+                        <h3>Witaj, {{name}}</h3>
+                        <h4 class="white"><i class="fa fa-check-circle-o"></i> Politchnika Rzeszowska</h4>
+                        <h4 class="white"><i class="fa fa-clock-o"></i> {{now}}</h4>
+                    </div>
+                </div>
+                <div class="col-md-6 no-pad">
+                    <div class="user-image">
+                        <img src="/static/zapisy/zwK7XG6 - Imgur.gif" class="img-responsive thumbnail">
+                    </div>
+                </div>
+            </div>
+            <div class="row overview">
+                <div class="col-md-4 user-pad text-center">
+                    <i class="fa fa-github-square fa-5x" style="font-size: 90px"></i>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <i class="fa fa-dropbox" style="font-size: 90px"></i>
+                </div>
+                <div class="col-md-4 user-pad text-center">
+                    <i class="fa fa-stack-overflow" style="font-size: 90px"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 user-menu-btns">
+            <div class="btn-group-vertical square" id="responsive">
+                <a href="#" class="btn btn-block btn-default active">
+                  <i class="fa fa-user fa-3x"></i>
+                </a>
+                <a href="#" class="btn btn-default">
+                  <i class="fa fa-line-chart fa-3x"></i>
+                </a>
+                <a href="#" class="btn btn-default">
+                  <i class="fa fa-file-powerpoint-o fa-3x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 user-menu user-pad">
+            <div class="user-menu-content active">
+                <h3>
+                    Twoje Dane
+                </h3>
+                <ul class="user-menu-list">
+                    <li>
+                        <h4>Imię i Nazwisko: {{ name }}</h4>
+                    </li>
+                    <li>
+                        <h4> Numer indeksu: {{user}}</h4>
+                    </li>
+                    <li>
+                        <h4>Email: {{email}}</h4>
+                    </li>
+                    <input class="btn btn-primary btn-block" type="submit" value="Edytuj" />
+
+                </ul>
+            </div>
+            <!--<div class="user-menu-content">-->
+                <!--<h3>-->
+                    <!--Edycja danych-->
+                <!--</h3>-->
+                <!--<ul class="user-menu-list">-->
+                    <!--<li>-->
+
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="user-menu-content">
+                 <h3>
+                    Statystyki
+                </h3>
+            </div>
+            <div class="user-menu-content">
+                <h2 class="text-center">
+                    Twoje Projekty
+                </h2>
+                <center><i class="fa fa-file-powerpoint-o fa-4x" ></i></center>
+                <div class="share-links">
+                    <center><button type="button" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
+                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>PROJEKTY ZAAKCEPTOWANE
+                    </button></center>
+                    <center><button type="button" class="btn btn-lg btn-labeled btn-warning" href="#">
+                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>PROJEKTY OCZEKUJĄCE
+                    </button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+<p> {{name}} </p>
+
+{% endif %}
+
 
 {% endblock %}
 

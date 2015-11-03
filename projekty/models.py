@@ -51,7 +51,7 @@ class Projekt(models.Model):
     id_projektu = models.CharField('ID projektu',max_length=30, primary_key=True)
     id_przedmiotu = models.ForeignKey(Przedmiot)
     nazwa = models.CharField('Nazwa projektu', max_length=50)
-    liczba_miejsc = models.IntegerField('Lb. miejsc', max_length=100)
+    liczba_miejsc = models.IntegerField('Lb. miejsc')
 
     class Meta:
         verbose_name_plural = "Projekt"
@@ -83,6 +83,7 @@ def user_registered_callback(sender, user, request, **kwargs):
     profile.save()
 
 user_registered.connect(user_registered_callback)
+
 
 
 
