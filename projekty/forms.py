@@ -16,8 +16,8 @@ class Registration(RegistrationForm):
     last_name = forms.CharField(label="Nazwisko:")
     email = forms.EmailField(label="Email:")
     tok_studiow = forms.CharField(label="Tok Studiów:")
-    password1 = forms.CharField(label="Hasło:")
-    password2 = forms.CharField(label="Powtórz hasło:")
+    password1 = forms.CharField(label="Hasło:",widget=forms.PasswordInput())
+    password2 = forms.CharField(label="Powtórz hasło:",widget=forms.PasswordInput())
 
 
 

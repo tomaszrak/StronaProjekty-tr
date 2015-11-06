@@ -1,19 +1,26 @@
 {% extends "base.html" %}
 
+{% block title %} Twoje projekty{{block.super}} {% endblock %}
+
+
 {% block content %}
 
-{% if name %}
-
-<p>
-    <b> Projekty zostaną wkrótce dodane</b>
-</p>
-
-{% else %}
-
-<p>
-    <b> Jesteś nie zalogowany</b>
-</p>
-
-{% endif %}
-
+<table  align="center" class="table table-condensed" style="background-color:rgba(104, 89, 74, 0.61); color:white">
+<tr align = center valign = top>
+<td><h3>Nazwa Projektu</h3></td>
+<td><h3>Przedmiot</h3></td>
+<td><h3>Prowadzący</h3></td>
+<td><h3>Wielkość Grupy</h3></td>
+<td></td></tr>
+{% for lesson in lessons %}
+<tr align = center valign = top>
+<td>{{ lesson.nazwa }} </td>
+<td>{{ lesson.name }}</td>
+<td>{{ lesson.id_prowadzacego }}</td>
+<td>{{ lesson.liczba_miejsc}}</td>
+<td>
+<button type="submit"  class="btn btn-primary btn-sm" name="Zapisz" value="{{lesson.id_przedmiotu}}" >Zapisz się</button>
+</td></tr>
+    {% endfor %}
+</table>
 {% endblock %}
