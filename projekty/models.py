@@ -2,6 +2,8 @@
 
 from django.db import models
 from registration.signals import user_registered
+
+
 # Create your models here.
 
 
@@ -14,7 +16,7 @@ class Student(models.Model):
     class Meta:
         verbose_name_plural = "Student"
 
-    def __unicode__(self):				#wyświetla nazwisko i imie w panelu administratora
+    def __unicode__(self):  # wyświetla nazwisko i imie w panelu administratora
         return u'%s %s' % (self.nazwisko, self.imie)
 
 
@@ -44,11 +46,11 @@ class Przedmiot(models.Model):
         verbose_name_plural = "Przedmiot"  # dzieki temu python nie wypisuje nazwy z końcówką "s" jako lb mnoga
 
     def __unicode__(self):
-       return u'%s' % (self.nazwa)
+        return u'%s' % (self.nazwa)
 
 
 class Projekt(models.Model):
-    id_projektu = models.CharField('ID projektu',max_length=30, primary_key=True)
+    id_projektu = models.CharField('ID projektu', max_length=30, primary_key=True)
     id_przedmiotu = models.ForeignKey(Przedmiot)
     nazwa = models.CharField('Nazwa projektu', max_length=50)
     liczba_miejsc = models.IntegerField('Lb. miejsc')
@@ -63,7 +65,7 @@ class Projekt(models.Model):
 class Wybrany_projekt(models.Model):
     id_projektu = models.ForeignKey(Projekt)
     id_student = models.ForeignKey(Student)
-    akceptacja = models.BooleanField('Akceptacja',default=False)
+    akceptacja = models.BooleanField('Akceptacja', default=False)
     preferencja = models.CharField('Preferencja', max_length=30)
     komentarz = models.CharField('Komentarz', max_length=100, blank=True)
     licznosc_grupy = models.IntegerField('Liczność grupy')
@@ -78,12 +80,9 @@ class Wybrany_projekt(models.Model):
 def user_registered_callback(sender, user, request, **kwargs):
     profile = Student(id_student=user)
     profile.nazwisko = (request.POST["last_name"])
-    profile.imie= (request.POST["first_name"])
+    profile.imie = (request.POST["first_name"])
     profile.tok_studiow = (request.POST["tok_studiow"])
     profile.save()
 
+
 user_registered.connect(user_registered_callback)
-
-
-
-

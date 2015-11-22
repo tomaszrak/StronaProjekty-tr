@@ -1,42 +1,37 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
-
-
-{% block title %} Witaj{{block.super}} {% endblock %}
-
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block title %} Witaj{{block.super}} {% endblock %}
 {% block jumbotron %}
-
-<!--      <div class="jumbotron" >
-          <div class="container">
-                    <h1 style="font-family: 'Comic Sans MS';font-size: 30px;">Strona z projektami</h1>
-                 </div>
-                 <div class="col-md-4 col-md-offset-1">
-                     <img class="img-responsive" src="static/zapisy/zwK7XG6 - Imgur.gif">
-                 </div>
-          </div>
-      </div>-->
 {% endblock %}
-<style>
-    {% block style %}
-    .navbar-static-top{
-    margin-bottom: 0px !important;
-    }
 
-    {% endblock %}
+{% block js %}
+
+<!--<script>-->
+        <!--$(document).on("click", ".alert", function(e) {-->
+            <!--bootbox.alert("Hello world!", function() {-->
+                <!--console.log("Alert Callback");-->
+            <!--});-->
+        <!--});-->
+<!--</script>-->
+
+{% endblock %}
+
+<style>
+    {
+        % block style %
+    }
+    
+    .navbar-static-top {
+        margin-bottom: 0px !important;
+    }
+    
+    {
+        % endblock %
+    }
 </style>
 
 {% block content %}
-<!--<div class="row">
-    <div class="col-md-2 col-md-offset-10">
 
-    <i class="fa fa-laptop fa-5x" style="color:black"></i>
-    <i class="fa fa-mobile fa-5x" style="color:black"></i>
-    </div>
-</div>-->
+    <!--<p>Content here. <a class="alert" href=#>Alert!</a></p>-->
 
-<!--{% if '127123' in data%}
-<p>tak</p>
-{%else%}
-<p>nie</p>
-{%endif%}-->
-  {% endblock %}
+
+
+{% endblock %}

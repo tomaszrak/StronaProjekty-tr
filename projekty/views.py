@@ -1,8 +1,10 @@
 # _*_ coding: utf-8 _*_
 from django.contrib.auth.models import Group
 from django.shortcuts import render
-from projekty.models import Student, Przedmiot, Projekt, Prowadzacy
+from django.views.decorators.csrf import csrf_exempt
+from projekty.models import Student, Przedmiot, Projekt, Prowadzacy, Wybrany_projekt
 import datetime
+from django.http import HttpResponse
 
 from django.contrib.auth.forms import PasswordChangeForm
 
@@ -50,6 +52,7 @@ def your_data(request):
     return render(request, 'your_data.html', context)
 
 
+@csrf_exempt
 def projects(request):
     global z
     if request.user.is_authenticated():
@@ -57,15 +60,31 @@ def projects(request):
     else:
         username = None
     tok = Student.objects.filter(id_student=username).values('tok_studiow')
+    name = Projekt.objects.values('id_projektu')
     for i in tok:
         z = i['tok_studiow']
 
-    # object = Przedmiot.objects.filter(tok_studiow=tok).values('id_przedmiotu')
     lessons2 = Przedmiot.objects.raw('SELECT DISTINCT projekty_projekt.*,projekty_przedmiot.*, '
-            'projekty_przedmiot.nazwa AS name FROM projekty_projekt INNER JOIN projekty_przedmiot '
-            'ON projekty_przedmiot.id_przedmiotu=projekty_projekt.id_przedmiotu_id '
-                                     'WHERE projekty_przedmiot.tok_studiow = %s ',[z])
+                                     'projekty_przedmiot.nazwa AS name FROM projekty_projekt INNER JOIN projekty_przedmiot '
+                                     'ON projekty_przedmiot.id_przedmiotu=projekty_projekt.id_przedmiotu_id '
+                                     'WHERE projekty_przedmiot.tok_studiow = %s ', [z])
+
+    if request.method == 'POST':
+        Wybrany_projekt.objects.create(id_projektu=Projekt.objects.get(id_projektu=request.POST['succes2']),
+        id_student=Student.objects.get(id_student=username),
+        preferencja='1',licznosc_grupy=request.POST['succes3'])
+
+
+    name = Przedmiot.objects.raw(
+        'SELECT DISTINCT projekty_przedmiot.* FROM projekty_przedmiot WHERE tok_studiow = %s', [z])
     context = {
         'lessons': lessons2,
+        'name':name,
     }
     return render(request, 'projects.html', context)
+
+
+
+
+
+

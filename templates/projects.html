@@ -1,26 +1,128 @@
 {% extends "base.html" %}
-
 {% block title %} Twoje projekty{{block.super}} {% endblock %}
+{% block js %}
 
+<script>
+
+
+    $(document).ready(function () {
+        $("#value").html($("#myselect :selected").text());
+        $("select").change(function () {
+            var val = $(this).val();
+            if (val == 'Wszystkie przedmioty') {
+                $('.project').show();
+            } else {
+                $('.project').show();
+                $('.project').not('#' + val).hide();
+            }
+
+        });
+
+    });
+
+    $(document).on("click", ".btn", function() {
+
+       var x = this.id;
+       var y = this.name;
+       function send(name){
+            var data = {'succes': x,'succes2': y, 'succes3': name};
+             $.post(URL, data, function(){});
+       }
+
+        bootbox.dialog({
+            title: "Potwierdź zapis na projekt",
+            message:'<h5>'+
+            '<b style="font-size:17px">Przedmiot :</b> '+ this.value + '</br>'+ '</br>'+
+            '<b style="font-size:17px">Nazwa Projektu :</b> '+ this.id + '</br>'+ '</br>'+
+            '<b style="font-size:17px">Podaj liczność grupy :</b> ' +
+            '<input type="text" name="fname" style="width:20px" id="group" /required>'  + '</h5>',
+            buttons: {
+                    default: {
+                        label: "Anuluj",
+                        className: "btn-default",
+                    },
+                    success: {
+                        label: "Potwierdź",
+                        className: "btn-primary",
+                        callback: function () {
+                            if($('#group').val() == '' ) {
+                            alert('Podaj wielkość grupy');
+                            bootbox.dialog();
+                            }
+                            else {
+                            var name = $('#group').val();
+                            send(name);
+                            }
+                        }
+                    }
+            }
+        });
+    });
+
+</script>
+<script>
+            var URL = "{% url 'projects' %}";
+
+</script>
+
+
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
 
 {% block content %}
 
-<table  align="center" class="table table-condensed" style="background-color:rgba(104, 89, 74, 0.61); color:white">
-<tr align = center valign = top>
-<td><h3>Nazwa Projektu</h3></td>
-<td><h3>Przedmiot</h3></td>
-<td><h3>Prowadzący</h3></td>
-<td><h3>Wielkość Grupy</h3></td>
-<td></td></tr>
-{% for lesson in lessons %}
-<tr align = center valign = top>
-<td>{{ lesson.nazwa }} </td>
-<td>{{ lesson.name }}</td>
-<td>{{ lesson.id_prowadzacego }}</td>
-<td>{{ lesson.liczba_miejsc}}</td>
-<td>
-<button type="submit"  class="btn btn-primary btn-sm" name="Zapisz" value="{{lesson.id_przedmiotu}}" >Zapisz się</button>
-</td></tr>
+{% if user.is_authenticated %}
+
+<div class="jumbotron" id="this">
+    <form>
+        <div class="container" >
+            <select class="form-control" id="myselect">
+                <option value="Wszystkie przedmioty">Wszystkie Przedmioty</option>
+                {% for names in name %}
+                <option value="{{names.id_przedmiotu}}">{{names.nazwa}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+</div>
+
+<table align="center" class="table table-condensed" id="table" style="background-color:rgba(104, 89, 74, 0.61); color:white">
+    <tr align=c enter valign=t op id="sss s">
+        <td>
+            <h3>Nazwa Projektu</h3></td>
+        <td>
+            <h3>Przedmiot</h3></td>
+        <td>
+            <h3>Prowadzący</h3></td>
+        <td>
+            <h3>Wielkość Grupy</h3></td>
+        <td></td>
+    </tr>
+    {% for lesson in lessons %}
+    <tr align=c enter valign=t op class="project" id="{{lesson.id_przedmiotu}}">
+
+        <td>{{ lesson.nazwa }} </td>
+        <td>{{ lesson.name }}</td>
+        <td>{{ lesson.id_prowadzacego }}</td>
+        <td>{{ lesson.liczba_miejsc}}</td>
+        <td>
+            <!--<form method="post">{% csrf_token %}-->
+            <button type="submit" data-bb="custom_html" value="{{lesson.name}}" class="btn btn-primary btn-sm" id="{{lesson.nazwa}}" name="{{lesson.id_projektu}}">Zapisz się</button>
+            <!--</form>-->
+        </td>
+    </tr>
     {% endfor %}
 </table>
+
+{% else %}
+<div class="row">
+    <div class="jumbotron">
+        <h2 style=""> Zaloguj aby zapisać się na projekt </h2>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}

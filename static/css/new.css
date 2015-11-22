@@ -18,9 +18,24 @@
    background-color:#39311E;
 
 }
+
+.modal-content{
+    background-image: url("http://www.bbexmarketing.com/blog/wp-content/uploads/2014/12/paper-and-pencil.jpg");
+    background-size:   100%;
+    background-repeat: no-repeat;
+    box-shadow: 0 5px 15px rgba(210, 210, 210, 0.77)
+
+}
 /* {
    background-color:#281351;
 }*/
+
+#this {
+    padding: 20px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
 a:active {
     background-color: yellow;
 }
