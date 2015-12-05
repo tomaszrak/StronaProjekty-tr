@@ -26,6 +26,20 @@
     box-shadow: 0 5px 15px rgba(210, 210, 210, 0.77)
 
 }
+#this-content{
+     background-image: none;
+
+}
+.btn-success {
+    color: #fff;
+    background-color: #b8974c;
+    border-color: #261b0d;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #695021;
+    border-color: #1f110e;
+}
 /* {
    background-color:#281351;
 }*/

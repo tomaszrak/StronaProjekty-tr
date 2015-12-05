@@ -20,12 +20,12 @@
 
     });
 
-    $(document).on("click", ".btn", function() {
+    $(document).on("click", ".btn-primary", function() {
 
        var x = this.id;
        var y = this.name;
-       function send(name){
-            var data = {'succes': x,'succes2': y, 'succes3': name};
+       function send(name,pref){
+            var data = {'succes': x,'succes2': y, 'succes3': name, 'succes4': pref};
              $.post(URL, data, function(){});
        }
 
@@ -35,7 +35,10 @@
             '<b style="font-size:17px">Przedmiot :</b> '+ this.value + '</br>'+ '</br>'+
             '<b style="font-size:17px">Nazwa Projektu :</b> '+ this.id + '</br>'+ '</br>'+
             '<b style="font-size:17px">Podaj liczność grupy :</b> ' +
-            '<input type="text" name="fname" style="width:20px" id="group" /required>'  + '</h5>',
+            '<input type="text" name="fname" style="width:20px" id="group" class="pro" /required>'  + '</h5>'+
+            '<b style="font-size:17px">Podaj preferencję projektu:</b> ' +
+            '<input type="text" name="fname" style="width:20px" id="pref" class="pro" /required>',
+
             buttons: {
                     default: {
                         label: "Anuluj",
@@ -45,13 +48,15 @@
                         label: "Potwierdź",
                         className: "btn-primary",
                         callback: function () {
-                            if($('#group').val() == '' ) {
-                            alert('Podaj wielkość grupy');
+                            if($('.pro').val() == '' ) {
+                            alert('Uzupełnij wszystkie pola');
                             bootbox.dialog();
                             }
                             else {
                             var name = $('#group').val();
-                            send(name);
+                            var pref = $('#pref').val();
+                            send(name,pref);
+                            $("#my-modal").modal();
                             }
                         }
                     }
@@ -90,7 +95,7 @@
 </div>
 
 <table align="center" class="table table-condensed" id="table" style="background-color:rgba(104, 89, 74, 0.61); color:white">
-    <tr align=c enter valign=t op id="sss s">
+    <tr align=center valign=top id="sss s">
         <td>
             <h3>Nazwa Projektu</h3></td>
         <td>
@@ -102,7 +107,7 @@
         <td></td>
     </tr>
     {% for lesson in lessons %}
-    <tr align=c enter valign=t op class="project" id="{{lesson.id_przedmiotu}}">
+    <tr align=center valign=top class="project" id="{{lesson.id_przedmiotu}}">
 
         <td>{{ lesson.nazwa }} </td>
         <td>{{ lesson.name }}</td>
@@ -124,5 +129,25 @@
     </div>
 </div>
 {% endif %}
+
+
+
+<div class="modal fade" id="my-modal">
+  <div class="modal-dialog">
+    <div class="modal-content" id="this-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Zapisałeś się na projekt</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Twoja rezerwacja projektu została wysłana do prowadzącego. </br> Oczekuj jego akceptacji.&hellip;</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 {% endblock %}

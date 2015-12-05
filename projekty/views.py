@@ -35,8 +35,17 @@ def contact(request):
     return render(request, 'contact.html', {})
 
 
+@csrf_exempt
 def your_data(request):
     now = datetime.datetime.now()
+    projects_id = Wybrany_projekt.objects.filter(id_student=request.user.username, akceptacja="True")
+    projects_id2 = Wybrany_projekt.objects.filter(id_student=request.user.username, akceptacja='')
+
+    if request.method == 'POST':
+        request.user.email = request.POST['email']
+        request.user.save()
+
+
     if request.user.is_authenticated():
         username = request.user.username
         name = Student.objects.get(id_student=username)
@@ -48,6 +57,8 @@ def your_data(request):
         'email': email,
         'now': now,
         'name': name,
+        'projects': projects_id,
+        'projects2': projects_id2,
     }
     return render(request, 'your_data.html', context)
 
@@ -72,7 +83,7 @@ def projects(request):
     if request.method == 'POST':
         Wybrany_projekt.objects.create(id_projektu=Projekt.objects.get(id_projektu=request.POST['succes2']),
         id_student=Student.objects.get(id_student=username),
-        preferencja='1',licznosc_grupy=request.POST['succes3'])
+        preferencja=request.POST['succes4'],licznosc_grupy=request.POST['succes3'])
 
 
     name = Przedmiot.objects.raw(

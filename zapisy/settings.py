@@ -21,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'uq@i5^9+r3gr^y=*-5rqs*l7p4x0*$8na)vpj4to^c^+zco1i9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+# zmiana na false
+DEBUG = False
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -130,3 +130,16 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL='/'
 
 LOGIN_URL = '/accounts/login/'
+################################
+import dj_database_url
+
+DATABASES['default'] =  dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

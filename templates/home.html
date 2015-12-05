@@ -5,12 +5,16 @@
 {% block js %}
 
 <!--<script>-->
-        <!--$(document).on("click", ".alert", function(e) {-->
-            <!--bootbox.alert("Hello world!", function() {-->
-                <!--console.log("Alert Callback");-->
-            <!--});-->
-        <!--});-->
+    <!--$("#button").click(function(){-->
+        <!--$("#my-modal").modal('toggle');-->
+    <!--});-->
+    <!--$('#my-modal').on('hidden.bs.modal', function (e) {-->
+            <!--console.log("exit");-->
+    <!--});-->
+
+
 <!--</script>-->
+
 
 {% endblock %}
 
@@ -29,9 +33,25 @@
 </style>
 
 {% block content %}
+<!--<a href="#my-modal" class="btn btn-primary" id="button">show</a>-->
+    <!--&lt;!&ndash;<p>Content here. <a class="alert" href=#>Alert!</a></p>&ndash;&gt;-->
 
-    <!--<p>Content here. <a class="alert" href=#>Alert!</a></p>-->
-
+<!--<div class="modal fade" id="my-modal">-->
+  <!--<div class="modal-dialog">-->
+    <!--<div class="modal-content" id="this-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+        <!--<h4 class="modal-title">Zapisałeś się na projekt</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body">-->
+        <!--<h5>Twoja rezerwacja projektu została wysłana do prowadzącego. </br> Oczekuj jego akceptacji.&hellip;</h5>-->
+      <!--</div>-->
+      <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-success" data-dismiss="modal">OK</button>-->
+        <!--</div>-->
+    <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+  <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
 
 
 {% endblock %}

@@ -1,9 +1,57 @@
 {% extends "base.html" %} {% load staticfiles %} {% load crispy_forms_tags %} {% block css %}
-<link href="{% static 'css/user.css' %}" rel="stylesheet"> {% endblock %} {% block js %}
+<link href="{% static 'css/user.css' %}" rel="stylesheet">{% endblock %}
+
+
+
+{% block js %}
 
 <script src="{% static 'js/user.js' %} "></script>
 
-{% endblock %} {% block title %} Dane{{block.super}} {% endblock %} {% block content %} {% if user.is_authenticated %}
+<script>
+
+
+$(document).ready(function () {
+    $('#tab').hide();
+    $('#tab2').hide();
+});
+
+$( "#accept" ).click(function() {
+    $('#tab2').hide();
+    $( "#tab" ).show( "slow", function() {
+
+  });
+});
+
+$( "#no_accept" ).click(function() {
+    $('#tab').hide();
+    $( "#tab2" ).show( "slow", function() {
+    });
+});
+
+$( "#edit" ).click(function() {
+    function send(email){
+             var data = {'email': email};
+             $.post(URL, data, function(){});
+       }
+    bootbox.prompt({
+      title: "Edytuj email",
+      value: "{{email}}",
+      callback: function(result) {
+         var email = result;
+         send(email);
+      }
+    });
+});
+</script>
+
+<script>
+            var URL = "{% url 'your_data' %}";
+
+</script>
+
+{% endblock %}
+
+{% block title %} Dane{{block.super}} {% endblock %} {% block content %} {% if user.is_authenticated %}
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" media="screen">
 <div class="container">
@@ -63,20 +111,11 @@
                     <li>
                         <h4>Email: {{email}}</h4>
                     </li>
-                    <input class="btn btn-primary btn-block" type="submit" value="Edytuj" />
+                    <button type="button" id="edit" class="btn btn-primary btn-block">Edytuj mail</button>
 
                 </ul>
             </div>
-            <!--<div class="user-menu-content">-->
-            <!--<h3>-->
-            <!--Edycja danych-->
-            <!--</h3>-->
-            <!--<ul class="user-menu-list">-->
-            <!--<li>-->
 
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</div>-->
             <div class="user-menu-content">
                 <h3>
                     Statystyki
@@ -89,12 +128,12 @@
                 <center><i class="fa fa-file-powerpoint-o fa-4x"></i></center>
                 <div class="share-links">
                     <center>
-                        <button type="button" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
+                        <button type="button" id="accept" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
                             <span class="btn-label"><i class="fa fa-bell-o"></i></span>PROJEKTY ZAAKCEPTOWANE
                         </button>
                     </center>
                     <center>
-                        <button type="button" class="btn btn-lg btn-labeled btn-warning" href="#">
+                        <button type="button" id="no_accept" class="btn btn-lg btn-labeled btn-warning" href="#">
                             <span class="btn-label"><i class="fa fa-bell-o"></i></span>PROJEKTY OCZEKUJĄCE
                         </button>
                     </center>
@@ -103,6 +142,41 @@
         </div>
     </div>
 </div>
+
+<div class="container" id="tab">
+<table align="center" class="table table-condensed" id="table" style="background-color:rgba(104, 89, 74, 0.61); color:white">
+       <tr align=center valign=top>
+        <td>
+            <h3>Nazwa Projektu</h3></td>
+        <td>
+            <h3>Komentarz prowadzącego</h3></td>
+       </tr>
+{% for projekt in projects %}
+<tr align = center valign = top>
+<td><font size="3" color="white">{{ projekt.id_projektu }}</font> </td>
+<td><font size="3" color="white"><B> {{projekt.komentarz}}<B></font></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+<div class="container" id="tab2">
+<table align="center" class="table table-condensed" id="table2" style="background-color:rgba(104, 89, 74, 0.61); color:white">
+       <tr align=center valign=top>
+        <td>
+            <h3>Nazwa Projektu</h3></td>
+        <td>
+            <h3>Komentarz prowadzącego</h3></td>
+       </tr>
+{% for projekt in projects2 %}
+<tr align = center valign = top>
+<td><font size="3" color="white">{{ projekt.id_projektu }}</font> </td>
+<td><font size="3" color="white"><B> {{projekt.komentarz}}<B></font></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
 
 {% else %}
 <div class="row">

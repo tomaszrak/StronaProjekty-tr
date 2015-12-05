@@ -23,6 +23,15 @@
     color: #fff!important;
 }
 
+#tab {
+    margin-top: 20px;
+
+}
+#tab2 {
+    margin-top: 20px;
+
+}
+
 /* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
 div.user-menu-container {
   z-index: 10;
